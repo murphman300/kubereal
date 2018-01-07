@@ -25,6 +25,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', users);
 
+let route = express.Router();
+
+route.get('/test', function (req, res) {
+    return res.json({
+        code : 200,
+        mine : "hello"
+    })
+});
+
+app.use('/kube', route);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
